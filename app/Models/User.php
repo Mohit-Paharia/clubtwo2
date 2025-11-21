@@ -18,9 +18,13 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
+        'phone',
+        'address',
         'password',
+        'location_id',
     ];
 
     /**
@@ -44,5 +48,40 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function clubs()
+    {
+        return $this->belongsToMany(Club::class, 'clubs_member_users');
+    }
+
+    public function blockedClubs()
+    {
+        return $this->belongsToMany(Club::class, 'user_blocked_clubs');
+    }
+
+    public function joinRequestedClubs()
+    {
+        return $this->belongsToMany(Club::class, 'club_join_request_users');
+    }
+
+    public function blockedByClubs()
+    {
+        return $this->belongsToMany(Club::class, 'club_blocked_users');
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+    public function hostedEvents()
+    {
+        return $this->hasMany(Event::class, 'host_id');
+    }
+
+    public function coordinatedEvents()
+    {
+        return $this->hasMany(Event::class, 'coordinator_id');
     }
 }
