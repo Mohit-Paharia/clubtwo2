@@ -19,7 +19,7 @@ class Location extends Model
 
     public function id(string $city, string $state, string $country)
     {
-        $id =  $this->where('city', $city)
+        $location =  $this->where('city', $city)
                     ->where('state', $state)
                     ->where('country', $country)
                     ->first();

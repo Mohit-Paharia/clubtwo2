@@ -13,8 +13,62 @@
             <form method="POST" action="/auth/register" class="space-y-6">
                 @csrf
                 <div>
-                    <label for="name" class="text-sm font-medium text-gray-700">Name</label>
-                    <input id="name" name="name" type="text" required
+                    <label for="first_name" class="text-sm font-medium text-gray-700">First Name</label>
+                    <input id="first_name" name="first_name" type="text" required
+                        class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        value="{{ old('name') }}">
+                    @error('email')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <label for="last_name" class="text-sm font-medium text-gray-700">Last Name</label>
+                    <input id="last_name" name="last_name" type="text" required
+                        class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        value="{{ old('name') }}">
+                    @error('name')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <label for="address" class="text-sm font-medium text-gray-700">Address</label>
+                    <input id="address" name="address" type="text" required
+                        class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        value="{{ old('name') }}">
+                    @error('name')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <label for="phone_number" class="text-sm font-medium text-gray-700">Phone Number</label>
+                    <input id="phone_number" name="phone_number" type="text" required
+                        class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        value="{{ old('name') }}">
+                    @error('name')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <label for="city" class="text-sm font-medium text-gray-700">City</label>
+                    <input id="city" name="city" type="text" required
+                        class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        value="{{ old('name') }}">
+                    @error('name')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <label for="state" class="text-sm font-medium text-gray-700">State</label>
+                    <input id="state" name="state" type="text" required
+                        class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        value="{{ old('name') }}">
+                    @error('name')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <label for="country" class="text-sm font-medium text-gray-700">Country</label>
+                    <input id="country" name="country" type="text" required
                         class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                         value="{{ old('name') }}">
                     @error('name')

@@ -30,10 +30,10 @@ class RegistrationController extends Controller
         ]);
 
         if ($result->isFailure())
-            return back()->withErrors($result->unwrapErr());
+            return back()->withErrors(['email' => $result->unwrapErr()]);
 
         
-        return view('authentication.check-your-mail');
+        return view('authentication.check-email');
     }
 
     public function verifyEmail(Request $request)

@@ -3,20 +3,22 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\Authentication\RegistrationController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Authentication\AdminController;
 use App\Http\Controllers\ClubController;
 use App\Models\Club;
+use App\Models\User;
 
 Route::model('club', Club::class);
+Route::model('event',Event::class);
+Route::model('user', User::class);
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/login', [AdminController::class, 'loginShow'])->name('admin.login.show');
-    Route::post('/login', [AdminController::class, 'loginPerform'])->name('admin.login.perform');
+Route::name('admin.')->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    Route::post('/approve/{club}', [AdminController::class,'approveClub'])->name('club.approve');
 });
 
 Route::prefix('auth')->group(function () {
@@ -39,19 +41,19 @@ Route::name('club.')
         Route::middleware('isClubManager')->group(function () {
             Route::get('/dashboard', 'dashboard')->name('dashboard');
 
-            Route::post('/join/accept', 'acceptJoinRequest')->name('join.accept');
-            Route::post('/join/reject', 'rejectJoinRequest')->name('join.reject');
+            Route::post('/join/accept/{user}', 'acceptJoinRequest')->name('join.accept');
+            Route::post('/join/reject/{user}', 'rejectJoinRequest')->name('join.reject');
 
-            Route::post('/block', 'blockUser')->name('user.block');
-            Route::post('/unblock', 'unblockUser')->name('user.unblock');
+            Route::post('/block/{users}', 'blockUser')->name('user.block');
+            Route::post('/unblock/{user}', 'unblockUser')->name('user.unblock');
 
-            Route::delete('/members/{id}', 'removeMember')->name('member.remove');
+            Route::delete('/members/{user}', 'removeMember')->name('member.remove');
 
-            Route::get('/events/{id}', 'showEvent')->name('event.show');
+            Route::get('/events/{event}', 'showEvent')->name('event.show');
             Route::get('/events/create', 'createEvent')->name('event.create');
             Route::post('/events', 'storeEvent')->name('event.store');
-            Route::put('/events/{id}', 'updateEvent')->name('event.update');
-            Route::delete('/events/{id}', 'deleteEvent')->name('event.delete');
+            Route::put('/events/{event}', 'updateEvent')->name('event.update');
+            Route::delete('/events/{event}', 'deleteEvent')->name('event.delete');
 
             Route::put('/setting', 'updateSetting')->name('setting.update');
         });

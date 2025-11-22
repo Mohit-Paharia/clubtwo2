@@ -59,7 +59,7 @@ class RegistrationService {
             'email'      => $data['email'],
             'phone'      => $data['phone_number'],
             'address'    => $data['address'],
-            'location_id'=> Location::id($data['city'], $data['state'], $data['country']),
+            'location_id'=> (new Location())->id($data['city'], $data['state'], $data['country']),
             'password'   => Hash::make($data['password']),
         ]);
         $data['user'] = $user;

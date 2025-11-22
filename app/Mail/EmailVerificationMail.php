@@ -13,7 +13,7 @@ class EmailVerificationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $url;
+    public $url;
 
     /**
      * Create a new message instance.

@@ -10,20 +10,24 @@ use App\Models\User;
 class LoginTest extends DuskTestCase
 {
     /**
-     * A Dusk test example.
+     * Login Process Test
      */
-    public function testExample(): void
+    public function testLogin(): void
     {
         $user = User::factory()->create([
             'password' => bcrypt('password'),
         ]);
-
+        
         $this->browse(function (Browser $browser) use ($user) {
-            $browser->visit('/auth/login')
-                    ->type('email', $user->email)
-                    ->type('password', 'password')
+            $browser->visit('/auth/login')->screenshot('login-page');
+
+            $browser->type('email', $user->email)
+                    ->type('#password', 'password')
                     ->press('Login')
-                    ->assertPathIs('/dashboard');  // or where login redirects
+                    ->assertPathIs('/');
+
+            $browser->pause(2000);
+            $browser->screenshot('login-success');
         });
     }
 }
