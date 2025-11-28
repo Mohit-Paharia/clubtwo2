@@ -5,8 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Models\Admin;
 
-class isClubManager
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,10 +16,8 @@ class isClubManager
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $club = $request->route('club');
-
-        if ($club->owner_id !== auth()->id()) {
-            abort(403, 'Only the club owner can access this section.');
+        if (!Admin::isAdmin(auth()->user()->id)) {
+            abort(403, 'You are not admin!');
         }
 
         return $next($request);

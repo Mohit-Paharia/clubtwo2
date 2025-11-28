@@ -12,9 +12,19 @@ class Club extends Model
     protected $fillable = [
         'name',
         'description',
+        'owner_id',
         'location_id',
     ];
 
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function approve() 
+    {
+        $this->approved = true;
+        $this->save();
+    }
     public function members()
     {
         return $this->belongsToMany(User::class, 'clubs_member_users');

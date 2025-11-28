@@ -50,6 +50,10 @@ class User extends Authenticatable
         ];
     }
 
+    public function chats()
+    {
+        return $this->hasMany(Chat::class);
+    }
     public function clubs()
     {
         return $this->belongsToMany(Club::class, 'clubs_member_users');

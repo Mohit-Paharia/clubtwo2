@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->foreign('user_id')->contraints('id')->on('users');
+            $table->foreignId('user_id')->contraints('id')->on('users');
         });
     }
 

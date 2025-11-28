@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->boolean('approved')->default(false);
+            $table->foreignId('owner_id')->constrained('users');
             $table->foreignId('location_id')->constrained('locations')->onDelete('cascade');
             $table->timestamps();
         });

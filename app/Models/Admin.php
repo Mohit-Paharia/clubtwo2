@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Admin extends Model
 {
-    protected $timestamp = false;
+    public $timestamps = false;
 
-    public function isAdmin($id)
+    public static function isAdmin($id)
     {
-        return $this->where("id", $id)->exists();
+        return static::where("id", $id)->exists();
     }
 }

@@ -17,9 +17,9 @@ class Location extends Model
         'country',
     ];
 
-    public function id(string $city, string $state, string $country)
+    public static function id(string $city, string $state, string $country)
     {
-        $location =  $this->where('city', $city)
+        $location =  static::where('city', $city)
                     ->where('state', $state)
                     ->where('country', $country)
                     ->first();
@@ -28,7 +28,7 @@ class Location extends Model
             return $location->id;
         }
     
-        return $this->create([
+        return static::create([
             'city' => $city,
             'state' => $state,
             'country' => $country

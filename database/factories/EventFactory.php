@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Model\User;
-use App\Model\Club;
-use App\Model\Location;
+use App\Models\User;
+use App\Models\Club;
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

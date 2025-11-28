@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->foreignId('location_id')->constrained('locations')->onDelete('cascade');
             
+            $table->double('credit')->default(5000.00);
+
             $table->rememberToken();
             $table->timestamps();
         });
